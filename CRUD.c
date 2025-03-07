@@ -1,12 +1,11 @@
 #include <stdio.h>
 #include <string.h>
-
-void create(char name[1000], int age, char university[1000]);
-
 struct infoStudents{
 	char name[1000], university[1000];
 	int age;
 };
+	
+void create(struct infoStudents user);
 
 int main(void) {
 	
@@ -19,16 +18,17 @@ int main(void) {
 	printf("\nEnter name of university:");
 	scanf("%s", user.university);
 	
-	create(user.name, user.age, user.university);
+	create(user);
 	
 	return 0;
 }
 
-void create(char name[1000], int age, char university[1000]) {
+void create(struct infoStudents user) {
+	
 	FILE *fptr;
 	fptr = fopen("students.txt", "a");
 	
-	fprintf(fptr, "%s, %d, %s\n", name, age, university);
+	fprintf(fptr, "%s, %d, %s\n", user.name, user.age, user.university);
 	
 	fclose(fptr);
 	
